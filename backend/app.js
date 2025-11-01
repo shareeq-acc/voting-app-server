@@ -1,14 +1,18 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import db_connect from './db/database.js';
 
 const app = express();
+db_connect();
 
 app.use(cors({
     origin: process.env.CORS_ORIGIN,
     credentials: true
 }))
-app.use(express.json({
+app.use(express.json({ 
     limit: "50kb"
 }))
 app.use(express.urlencoded({ // encodeed data that comes from url
